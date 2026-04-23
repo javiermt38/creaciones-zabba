@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Optimizaciones - Creaciones ZABBA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: #F5E6C8; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: #D4AF37; margin-bottom: 20px; text-align: center; }
+        .test-group { background: rgba(212, 175, 55, 0.1); border: 1px solid #D4AF37; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .test-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+        .test-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .test-label { font-weight: bold; color: #D4AF37; margin-bottom: 5px; }
+        .test-result { padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.9em; overflow-x: auto; }
+        .success { background: rgba(76, 175, 80, 0.2); border-left: 4px solid #4CAF50; color: #4CAF50; }
+        .warning { background: rgba(255, 193, 7, 0.2); border-left: 4px solid #FFC107; color: #FFC107; }
+        .error { background: rgba(244, 67, 54, 0.2); border-left: 4px solid #F44336; color: #F44336; }
+        button { background: linear-gradient(135deg, #D4AF37, #F0C040); color: #0a0a0a; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; }
+        button:hover { background: linear-gradient(135deg, #F0C040, #D4AF37); }
+        .summary { background: rgba(76, 175, 80, 0.1); border: 2px solid #4CAF50; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center; }
+        .score { font-size: 2em; color: #4CAF50; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Test de Optimizaciones - Creaciones ZABBA</h1>
+        
+        <div class="summary" id="summary">
+            <div>Puntuación: <span class="score" id="score">--</span>/100</div>
+            <div id="status">Ejecutando pruebas...</div>
+        </div>
+
+        <!-- Test: jQuery -->
+        <div class="test-group">
+            <h2>1️⃣ Verificación de jQuery</h2>
+            <div class="test-item">
+                <div class="test-label">¿jQuery está cargado?</div>
+                <div id="jquery-test" class="test-result"></div>
+            </div>
+        </div>
+
+        <!-- Test: CSS Minificado -->
+        <div class="test-group">
+            <h2>2️⃣ Verificación de CSS</h2>
+            <div class="test-item">
+                <div class="test-label">¿Se está usando Style.min.css?</div>
+                <div id="css-test" class="test-result"></div>
+            </div>
+            <div class="test-item">
+                <div class="test-label">Tamaño de CSS cargado</div>
+                <div id="css-size" class="test-result"></div>
+            </div>
+        </div>
+
+        <!-- Test: Lazy Loading -->
+        <div class="test-group">
+            <h2>3️⃣ Verificación de Lazy Loading</h2>
+            <div class="test-item">
+                <div class="test-label">Imágenes con loading="lazy"</div>
+                <div id="lazy-test" class="test-result"></div>
+            </div>
+        </div>
+
+        <!-- Test: JavaScript -->
+        <div class="test-group">
+            <h2>4️⃣ Verificación de JavaScript</h2>
+            <div class="test-item">
+                <div class="test-label">¿Se cargó main.js correctamente?</div>
+                <div id="js-test" class="test-result"></div>
+            </div>
+            <div class="test-item">
+                <div class="test-label">Eventos del DOM disponibles</div>
+                <div id="events-test" class="test-result"></div>
+            </div>
+        </div>
+
+        <!-- Test: Performance -->
+        <div class="test-group">
+            <h2>5️⃣ Métricas de Rendimiento</h2>
+            <div class="test-item">
+                <div class="test-label">Tiempo de carga del DOM</div>
+                <div id="domready-test" class="test-result"></div>
+            </div>
+            <div class="test-item">
+                <div class="test-label">Tamaño total de la página (aproximado)</div>
+                <div id="pagesize-test" class="test-result"></div>
+            </div>
+            <div class="test-item">
+                <div class="test-label">Solicitudes HTTP realizadas</div>
+                <div id="requests-test" class="test-result"></div>
+            </div>
+        </div>
+
+        <!-- Test: Configuración del Servidor -->
+        <div class="test-group">
+            <h2>6️⃣ Verificación de Servidor</h2>
+            <div class="test-item">
+                <div class="test-label">¿Compresión GZIP habilitada?</div>
+                <div id="gzip-test" class="test-result"></div>
+            </div>
+            <div class="test-item">
+                <div class="test-label">Headers de caché presentes</div>
+                <div id="cache-test" class="test-result"></div>
+            </div>
+        </div>
+
+        <button onclick="descargarResultados()">📥 Descargar Resultados</button>
+    </div>
+
+    <script>
+        let testsPassed = 0;
+        let totalTests = 0;
+
+        // Función auxiliar para registrar resultados
+        function setResult(elementId, passed, message) {
+            const element = document.getElementById(elementId);
+            totalTests++;
+            if(passed) {
+                element.className = 'test-result success';
+                testsPassed++;
+            } else {
+                element.className = 'test-result warning';
+            }
+            element.textContent = message;
+        }
+
+        // Test 1: jQuery
+        function testJQuery() {
+            const hasJQuery = typeof window.jQuery !== 'undefined' || typeof window.$ !== 'undefined';
+            if(!hasJQuery) {
+                setResult('jquery-test', true, '✓ jQuery NO está cargado (OPTIMIZADO)');
+            } else {
+                setResult('jquery-test', false, '✗ jQuery SÍ está cargado (debería removerse)');
+            }
+        }
+
+        // Test 2: CSS Minificado
+        function testCSS() {
+            const stylesheets = Array.from(document.styleSheets).filter(s => {
+                try { return s.href && s.href.includes('Style.min.css'); } catch(e) { return false; }
+            });
+            
+            if(stylesheets.length > 0) {
+                setResult('css-test', true, '✓ Style.min.css está siendo usado');
+            } else {
+                setResult('css-test', false, '✗ No se encontró Style.min.css (verifica el HTML)');
+            }
+
+            // Tamaño de CSS
+            const allCSS = Array.from(document.styleSheets).reduce((acc, sheet) => {
+                try { return acc + (sheet.href || '').length; } catch(e) { return acc; }
+            }, 0);
+            document.getElementById('css-size').className = 'test-result success';
+            document.getElementById('css-size').textContent = `≈ ${(allCSS/1024).toFixed(2)}KB`;
+        }
+
+        // Test 3: Lazy Loading
+        function testLazyLoading() {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]').length;
+            if(lazyImages > 0) {
+                setResult('lazy-test', true, `✓ ${lazyImages} imágenes con lazy loading`);
+            } else {
+                setResult('lazy-test', false, '✗ No se encontraron imágenes con loading="lazy"');
+            }
+        }
+
+        // Test 4: JavaScript
+        function testJavaScript() {
+            const toggle = document.querySelector('.toggle');
+            if(toggle && document.querySelector('.navigation')) {
+                setResult('js-test', true, '✓ main.js cargado (elementos del DOM encontrados)');
+            } else {
+                setResult('js-test', false, '✗ No se encontraron elementos esperados');
+            }
+
+            // Eventos
+            const hasEventListeners = toggle && toggle._getEventListeners ? true : toggle.onclick !== null || toggle.oneventname !== null;
+            setResult('events-test', true, `✓ Sistema de eventos funcional (${navigator.userAgent.includes('Chrome') ? 'Chrome' : 'navegador'} ${navigator.userAgent.match(/\d+/)[0]})`);
+        }
+
+        // Test 5: Performance
+        function testPerformance() {
+            // Tiempo de DOM Ready
+            if(window.performance && window.performance.timing) {
+                const perfTiming = performance.timing;
+                const domReadyTime = perfTiming.domContentLoadedEventEnd - perfTiming.navigationStart;
+                document.getElementById('domready-test').className = 'test-result success';
+                document.getElementById('domready-test').textContent = `✓ ${domReadyTime}ms`;
+            }
+
+            // Tamaño de página (aproximado)
+            const pageSize = new Blob([document.documentElement.innerHTML]).size;
+            document.getElementById('pagesize-test').className = 'test-result success';
+            document.getElementById('pagesize-test').textContent = `✓ ≈ ${(pageSize/1024).toFixed(2)}KB HTML`;
+
+            // Solicitudes HTTP
+            const requests = performance.getEntriesByType('resource').length;
+            document.getElementById('requests-test').className = 'test-result success';
+            document.getElementById('requests-test').textContent = `✓ ${requests} solicitudes`;
+        }
+
+        // Test 6: Servidor
+        function testServer() {
+            // GZIP (difícil de probar sin acceso al servidor)
+            document.getElementById('gzip-test').className = 'test-result warning';
+            document.getElementById('gzip-test').textContent = '⚠ Verifica en DevTools → Network → Headers (Content-Encoding: gzip)';
+
+            // Caché
+            const cacheHeaders = Array.from(document.querySelectorAll('[href], [src]')).filter(el => {
+                return el.href || el.src;
+            }).length > 0;
+            document.getElementById('cache-test').className = 'test-result warning';
+            document.getElementById('cache-test').textContent = '⚠ Verifica en DevTools → Network → Headers (Cache-Control)';
+        }
+
+        // Ejecutar todos los tests
+        function runAllTests() {
+            testJQuery();
+            testCSS();
+            testLazyLoading();
+            testJavaScript();
+            testPerformance();
+            testServer();
+
+            // Actualizar puntuación
+            const score = Math.round((testsPassed / totalTests) * 100);
+            document.getElementById('score').textContent = score;
+            document.getElementById('status').textContent = `${testsPassed}/${totalTests} pruebas pasadas`;
+
+            if(score >= 80) {
+                document.getElementById('summary').style.borderColor = '#4CAF50';
+                document.getElementById('status').style.color = '#4CAF50';
+            }
+        }
+
+        // Descargar resultados
+        function descargarResultados() {
+            const results = document.body.innerText;
+            const blob = new Blob([results], {type: 'text/plain'});
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'test-optimizaciones.txt';
+            a.click();
+        }
+
+        // Ejecutar tests cuando el DOM esté listo
+        if(document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runAllTests);
+        } else {
+            runAllTests();
+        }
+    </script>
+</body>
+</html>

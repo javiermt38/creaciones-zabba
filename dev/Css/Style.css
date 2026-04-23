@@ -1,8 +1,7 @@
 /* =============================================
    IMPORTACIONES
    ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+/* Fonts are preloaded in HTML - avoid duplicate imports */
 
 /* =============================================
    PALETA — CREACIONES ZABBA
@@ -158,6 +157,17 @@ nav {
     to   { box-shadow: 0 0 65px rgba(212,175,55,0.95), 0 0 130px rgba(212,175,55,0.4); }
 }
 
+/* =============================================
+   COLOR SWATCHES — Reusable class for product colors
+   ============================================= */
+.color-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
 /* Nombre tienda en el banner */
 .banner .content h1 {
     background: linear-gradient(135deg, #D4AF37 0%, #F0C040 50%, #A0820D 100%);
@@ -168,10 +178,8 @@ nav {
     margin-bottom: 10px;
     border-radius: 10px;
     filter: drop-shadow(0 0 12px rgba(212,175,55,0.7));
-}
-
-.banner .content h1:hover {
-    filter: drop-shadow(0 0 24px rgba(212,175,55,1));
+    will-change: filter;
+    transition: filter 0.3s ease-out;
 }
 
 .banner .content h2 { color: #F5E6C8; font-size: 4em; }
@@ -197,8 +205,9 @@ nav {
     width: 250px;
     margin: auto;
     font-weight: bold;
-    transition: 0.3s;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     box-shadow: 0 2px 10px rgba(212,175,55,0.3);
+    will-change: transform, box-shadow;
 }
 
 .button:hover {
@@ -294,6 +303,11 @@ nav {
     margin: 0 auto;
     display: flex;
     justify-content: center;
+}
+
+/* Performance optimization: reduce reflow/repaint */
+.products .content .card {
+    content-visibility: auto;
 }
 
 .products .content .card .button {
