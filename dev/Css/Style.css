@@ -166,6 +166,7 @@ nav {
     border-radius: 50%;
     display: inline-block;
     border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
 }
 
 /* Nombre tienda en el banner */

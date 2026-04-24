@@ -45,3 +45,36 @@ const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)')
 if(!prefersReducedMotion){
   document.documentElement.style.scrollBehavior='smooth';
 }
+
+// ========== WHATSAPP DYNAMIC MESSAGES ==========
+function getGreeting(){
+  const hour=new Date().getHours();
+  if(hour>=5&&hour<12)return'Buenos días';
+  if(hour>=12&&hour<18)return'Buenas tardes';
+  return'Buenas noches';
+}
+
+function getProductRef(btn){
+  const card=btn.closest('.card');
+  const img=card.querySelector('img');
+  const src=img.src;
+  const match=src.match(/producto-(\d+)/);
+  return match?match[1]:'';
+}
+
+function sendWhatsAppMessage(btn){
+  const ref=getProductRef(btn);
+  const greeting=getGreeting();
+  const message=`${greeting} 👋, vengo de la página web de Creaciones ZABBA y me interesa este producto Ref:${ref}. Quiero más información 📧`;
+  const encoded=encodeURIComponent(message);
+  const url=`https://api.whatsapp.com/send?phone=573203473120&text=${encoded}`;
+  window.open(url,'_blank');
+}
+
+function sendWhatsAppGeneral(){
+  const greeting=getGreeting();
+  const message=`${greeting} 👋, vengo de la página web de Creaciones ZABBA. Quiero más información sobre sus diseños 📧`;
+  const encoded=encodeURIComponent(message);
+  const url=`https://api.whatsapp.com/send?phone=573203473120&text=${encoded}`;
+  window.open(url,'_blank');
+}
