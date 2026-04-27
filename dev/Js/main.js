@@ -57,8 +57,8 @@ function getGreeting(){
 function getProductRef(btn){
   const card=btn.closest('.card');
   const img=card.querySelector('img');
-  const src=img.src;
-  const match=src.match(/producto-(\d+)/);
+  const id=img.id;
+  const match=id.match(/img-product-(\d+)/);
   return match?match[1]:'';
 }
 
