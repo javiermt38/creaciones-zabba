@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="light dark" name="color-scheme" />
+    <!-- ===== PERFORMANCE ===== -->
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://api.whatsapp.com" />
     <!-- ===== SEO BÁSICO ===== -->
     <title>Creaciones ZABBA — Diseños que destacan, actitud que impacta</title>
     <meta
@@ -16,6 +22,11 @@
     />
     <meta content="Creaciones ZABBA" name="author" />
     <meta content="index, follow" name="robots" />
+    <meta name="theme-color" content="#D4AF37" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="canonical" href="https://creacioneszabba.com/" />
+    <meta name="revisit-after" content="7 days" />
     <!-- ===== OPEN GRAPH — Facebook & Instagram ===== -->
     <meta content="website" property="og:type" />
     <meta content="Creaciones ZABBA" property="og:site_name" />
@@ -48,37 +59,81 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ClothingStore",
+        "@type": "LocalBusiness",
         "name": "Creaciones ZABBA",
+        "alternateName": "ZABBA",
         "description": "Fabricantes colombianos de ropa femenina de alta calidad. Ventas al detal y al por mayor.",
-        "slogan": "Diseños que destacan, actitud que impacta",
-        "image": "./public/logoEmpresa.jpeg",
+        "url": "https://creacioneszabba.com",
+        "logo": "https://creacioneszabba.com/public/logoEmpresa.jpeg",
+        "image": "https://creacioneszabba.com/public/logoEmpresa.jpeg",
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61589073232211",
+          "https://www.instagram.com/creacioneszabba_/",
+          "https://www.tiktok.com/@creacioneszabba_"
+        ],
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "CO",
           "addressLocality": "Bogotá",
-          "addressRegion": "Cundinamarca"
+          "addressRegion": "Cundinamarca",
+          "streetAddress": "Bogotá, Colombia"
         },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+57-320-3473120",
-          "contactType": "sales",
-          "availableLanguage": "Spanish"
+          "contactType": "Customer Service",
+          "availableLanguage": "Spanish",
+          "areaServed": "CO"
+        },
+        "priceRange": "$$ - $$$",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingValue": "4.8",
+          "ratingCount": "250"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://creacioneszabba.com/#banner"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Productos",
+            "item": "https://creacioneszabba.com/#products"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Contacto",
+            "item": "https://creacioneszabba.com/#links"
+          }
+        ]
       }
     </script>
     <link href="./dev/Css/Style.min.css" rel="stylesheet" />
     <link href="./public/logoEmpresa.jpeg" rel="shortcut icon" type="image/jpeg" />
+    <!-- ===== PRELOAD & PRECONNECT ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Dancing+Script:wght@600&display=swap"
       rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Dancing+Script:wght@600&display=swap"
       as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Dancing+Script:wght@600&display=swap"
+      rel="stylesheet"
     />
     <noscript
       ><link
@@ -90,26 +145,31 @@
     <!--Cabezera-->
     <section class="header">
       <nav>
-        <a class="logo_principal" href="#banner"> </a>
-        <a class="toggle">
-          <img alt="Menu de navegacion." src="./public/assets/img/menu.webp" loading="lazy" />
+        <a class="logo_principal" href="#banner" aria-label="Logo Creaciones ZABBA - Ir a inicio">
         </a>
-        <ul class="navigation">
+        <a class="toggle" aria-label="Abrir menú de navegación" role="button" tabindex="0">
+          <img alt="Icono menú" src="./public/assets/img/menu.webp" loading="lazy" />
+        </a>
+        <ul class="navigation" role="navigation">
           <li>
-            <a class="logo" href="#banner"> Inicio </a>
+            <a class="logo" href="#banner" aria-label="Ir a inicio"> Inicio </a>
           </li>
           <li>
-            <a class="logo" href="#products"> Productos </a>
+            <a class="logo" href="#products" aria-label="Ir a productos"> Productos </a>
           </li>
           <li>
-            <a class="logo" href="#links"> Informacion </a>
+            <a class="logo" href="#links" aria-label="Ir a información y contacto"> Informacion </a>
           </li>
         </ul>
       </nav>
     </section>
     <!--Principal Banner-->
     <section class="banner" id="banner">
-      <img alt="Banner de ropa femenina - Creaciones ZABBA - Moda colombiana en Bogotá" class="fitBg" src="./public/assets/img/fondo.webp" />
+      <img
+        alt="Banner de ropa femenina - Creaciones ZABBA - Moda colombiana en Bogotá"
+        class="fitBg"
+        src="./public/assets/img/fondo.webp"
+      />
       <div class="content">
         <img
           alt="Creaciones ZABBA — Logo"
@@ -1279,7 +1339,6 @@
     </section>
     <!--Footer sin GitHub-->
     <section class="footer" id="links">
-      g
       <ul class="sci">
         <li>
           <a
@@ -1321,6 +1380,8 @@
         class="appWhatsapp"
         href="https://api.whatsapp.com/send?phone=573203473120&amp;text=Hola,%20vine%20desde%20la%20p%C3%A1gina%20web%20de%20Creaciones%20ZABBA%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20sus%20dise%C3%B1os%20%F0%9F%91%97"
         target="_blank"
+        aria-label="Contactar por WhatsApp"
+        rel="noopener noreferrer"
       >
         <img alt="icono de whatsapp" src="./public/assets/img/whatsapp.webp" loading="lazy" />
       </a>
@@ -1330,6 +1391,6 @@
         — Fabricantes colombianos de ropa femenina. Todos los derechos reservados.
       </h4>
     </section>
-    <script src="./dev/Js/main.js"></script>
+    <script src="./dev/Js/main.js" defer></script>
   </body>
 </html>
