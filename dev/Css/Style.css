@@ -393,6 +393,10 @@ nav {
     fill: #D4AF37;
     transition: 0.3s;
 }
+.tiktok-link:hover .tiktok-icon {
+    fill: #F0C040;
+    transform: scale(1.18);
+}
 
 /* WhatsApp flotante — visible en todos los dispositivos */
 .appWhatsapp {
