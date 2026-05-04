@@ -1,1 +1,728 @@
-/* ============================================= IMPORTACIONES ============================================= */ /* Fonts are preloaded in HTML - avoid duplicate imports */ /* ============================================= PALETA — CREACIONES ZABBA Negro:#0a0a0a | Dorado:#D4AF37 | Crema:#F5E6C8 ============================================= */ *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}section{position:relative;padding:40px;}a{text-decoration:none;}/* ============================================= NAVEGACION ============================================= */ nav{padding:0 20px;width:96%;height:55px;box-sizing:border-box;background:rgba(8,6,0,0.93);border:1px solid #D4AF37;box-shadow:0 5px 20px rgba(212,175,55,0.35);transition:.5s;border-radius:9px;z-index:1000000;position:fixed;top:5px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;overflow:visible;}.header,.banner{font-family:'Dancing Script',cursive;width:100%;}.header{position:absolute;top:0;left:0;z-index:1000000;display:flex;justify-content:space-between;padding-top:20px;padding-bottom:20px;overflow:visible;}/* Logo navbar — solo muestra imagen */ .logo_principal{font-size:0;display:flex;align-items:center;}.logo_principal::before{content:'';display:block;width:46px;height:46px;background-image:url('../../public/logoEmpresa.jpeg');background-size:contain;background-repeat:no-repeat;background-position:center;border-radius:50%;border:2px solid #D4AF37;box-shadow:0 0 8px rgba(212,175,55,0.5);}.header .logo,.logo_principal{color:#D4AF37;}.navigation{display:flex;position:relative;margin:0;padding:0;transition:.5s;align-items:center;gap:4px;}.navigation li{list-style:none;}.navigation li a{display:block;padding:6px 20px;font-weight:bold;font-size:1.3em;font-family:'Dancing Script',cursive;transition:.5s;color:#D4AF37;white-space:nowrap;}.navigation li a:hover{background:linear-gradient(135deg,#D4AF37,#F0C040);color:#0a0a0a;border-radius:10px;}.toggle{display:none;position:absolute;right:40px;background:linear-gradient(135deg,#D4AF37,#F0C040);border-radius:5px;}.header .toggle img{max-width:35px;cursor:pointer;}/* ============================================= BANNER / HERO ============================================= */ .banner{position:relative;min-height:110vh;display:flex;justify-content:center;align-items:center;background-color:#0a0a0a;}.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.42);z-index:0;}.banner::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:400px;z-index:1;background:linear-gradient(to top,#0a0a0a,transparent);}.banner .content{position:relative;max-width:900px;text-align:center;z-index:2;padding:0 20px;}.banner .content a{font-family:'Raleway',sans-serif;display:block;}/* Poster del logo en el banner */ .banner-logo-poster{display:block;width:380px;max-width:88vw;height:auto;margin:0 auto 22px;border-radius:18px;border:3px solid #D4AF37;box-shadow:0 0 40px rgba(212,175,55,0.65),0 0 80px rgba(212,175,55,0.25);animation:logoGlow 3s ease-in-out infinite alternate;}@keyframes logoGlow{from{box-shadow:0 0 30px rgba(212,175,55,0.5),0 0 60px rgba(212,175,55,0.2);}to{box-shadow:0 0 65px rgba(212,175,55,0.95),0 0 130px rgba(212,175,55,0.4);}}/* ============================================= COLOR SWATCHES — Reusable class for product colors ============================================= */ .color-swatch{width:22px;height:22px;border-radius:50%;display:inline-block;border:1px solid rgba(255,255,255,0.3);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.12);}/* Nombre tienda en el banner */ .banner .content h1{background:linear-gradient(135deg,#D4AF37 0%,#F0C040 50%,#A0820D 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:7em;margin-bottom:10px;border-radius:10px;filter:drop-shadow(0 0 12px rgba(212,175,55,0.7));will-change:filter;transition:filter 0.3s ease-out;}.banner .content h2{color:#F5E6C8;font-size:4em;}.banner .content p{color:#F5E6C8;font-size:1.2em;}.fitBg{position:absolute;top:0;left:0;right:0;width:100%;height:100%;object-fit:cover;}/* ============================================= BOTON GENERAL ============================================= */ .button{text-decoration:none;color:#0a0a0a;background:linear-gradient(135deg,#D4AF37,#F0C040);padding:7px 1px 9px;border:1px solid #A0820D;border-radius:5px;width:250px;margin:auto;font-weight:bold;transition:transform 0.3s ease-out,box-shadow 0.3s ease-out;box-shadow:0 2px 10px rgba(212,175,55,0.3);will-change:transform,box-shadow;}.button:hover{background:linear-gradient(135deg,#F0C040,#D4AF37);box-shadow:0 4px 20px rgba(212,175,55,0.65);transform:translateY(-2px);}/* ============================================= SECCION PRODUCTOS ============================================= */ .beauty{font-family:'Dancing Script',cursive;}.products{text-align:center;margin:auto;font-family:'Raleway',sans-serif;background:linear-gradient(160deg,#111111 0%,#1a1208 50%,#0a0a0a 100%);}.products h2{font-size:100px;background:linear-gradient(135deg,#D4AF37,#F0C040);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(212,175,55,0.4));}.products h4{font-size:20px;color:#F5E6C8;margin-bottom:10px;}.products a{display:block;margin:auto;width:250px;}/* ============================================= GRID DE CARDS ============================================= */ .products .content{position:relative;width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:80px 30px;padding:60px 40px 40px;justify-items:center;}/* ============================================= CARD ============================================= */ .products .content .card{position:relative;width:100%;max-width:300px;height:220px;border:2px solid #D4AF37;border-radius:5px;padding:25px 7px;display:flex;flex-direction:column;transition:0.2s ease-in-out;background:rgba(20,15,3,0.88);box-shadow:0 0 12px rgba(212,175,55,0.12);}.products .content .card:hover{height:480px;border:3px solid #F0C040;background:linear-gradient(160deg,#1a1208,#0a0a0a);border-radius:5px;box-shadow:0 0 35px rgba(212,175,55,0.45);}.products .content .card .imgBx{position:relative;width:100%;max-width:300px;height:300px;top:-60px;margin:auto;z-index:1;display:flex;align-items:center;justify-content:center;}.products .content .card .imgBx img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;}.products .content .card .contentcard{position:relative;margin-top:-120px;padding:8px 15px;text-align:center;color:#F5E6C8;visibility:hidden;opacity:0;transition:0.2s ease-in-out;}.products .content .card:hover .contentcard{visibility:visible;opacity:1;transition-delay:0.1s;}.products .content .card .contentcard h3{font-size:25px;color:#D4AF37;background:rgba(10,10,10,0.7);border-radius:7px;font-family:'Dancing Script',cursive;margin-bottom:10px;}.products .content .card .contentcard p{margin-bottom:10px;color:#F5E6C8;}.products .content .card .contentcard a{margin:0 auto;display:flex;justify-content:center;}/* Performance optimization:reduce reflow/repaint */ .products .content .card{content-visibility:auto;}.products .content .card .button{text-decoration:none;color:#0a0a0a;background:linear-gradient(135deg,#D4AF37,#F0C040);padding:7px 20px 9px;border:1px solid #A0820D;border-radius:5px;margin:0 auto;font-weight:bold;display:block;text-align:center;width:fit-content;}.products .content .card:hover .imgBx img{max-width:100%;margin-top:-40px;}.products .content .card:hover a{margin:auto;}/* Gradientes por card — tonos cálidos oscuros */ .card-1{background:linear-gradient(45deg,#1a1000,#2a1f00);}.card-2{background:linear-gradient(45deg,#0d0d00,#1f1a00);}.card-3{background:linear-gradient(45deg,#1a0f00,#2a1800);}.card-4{background:linear-gradient(45deg,#120d00,#201800);}.card-5{background:linear-gradient(45deg,#0a0800,#1a1400);}.card-6{background:linear-gradient(45deg,#100e00,#201c00);}.card-7{background:linear-gradient(45deg,#1a1000,#2e2000);}/* ============================================= FOOTER ============================================= */ .footer{display:flex;justify-content:center;align-items:center;flex-direction:column;background-color:#060604;border-top:2px solid #D4AF37;font-family:'Raleway',sans-serif;padding:30px 20px;}.footer .sci{position:relative;display:flex;}.footer .sci li{list-style:none;}.footer .sci li a{text-decoration:none;margin:0 20px;}.footer .sci{position:relative;display:flex;align-items:center;gap:30px;margin-bottom:10px;}.footer .sci li{list-style:none;}.footer .sci li a{text-decoration:none;display:flex;align-items:center;justify-content:center;}/* Íconos Facebook e Instagram — forzar dorado */ .footer .sci li a img{width:40px;height:40px;filter:brightness(0) saturate(100%) invert(78%) sepia(55%) saturate(500%) hue-rotate(5deg) brightness(95%);transition:0.3s;}.footer .sci li a img:hover{filter:brightness(0) saturate(100%) invert(85%) sepia(60%) saturate(600%) hue-rotate(5deg) brightness(110%);transform:scale(1.18);}/* Redes sociales deshabilitadas — dorado sin enlace */ .social-disabled{cursor:default;pointer-events:none;opacity:0.85;}/* TikTok SVG dorado */ .tiktok-link{display:flex;align-items:center;justify-content:center;}.tiktok-icon{width:40px;height:40px;fill:#D4AF37;transition:0.3s;}.tiktok-link:hover .tiktok-icon{fill:#F0C040;transform:scale(1.18);}/* WhatsApp flotante — visible en todos los dispositivos */ .appWhatsapp{position:fixed;right:20px;bottom:20px;width:55px;height:55px;z-index:999999;display:flex;align-items:center;justify-content:center;}.appWhatsapp img{width:55px;height:55px;object-fit:contain;}.copyrightText{margin-top:20px;font-size:18px;font-weight:300;color:#F5E6C8;text-align:center;}.copyrightText a{text-decoration:none;color:#D4AF37;}/* ============================================= ============================================= */ @media (max-width:1200px){.products .content{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:70px 25px;padding:50px 30px 30px;}.banner .content h1{font-size:5em;}.banner-logo-poster{width:300px;}}/* ============================================= RESPONSIVE — TABLETS (max 1025px) ============================================= */ @media (max-width:1025px){nav{padding:0 10px;width:92%;height:48px;overflow:visible;}/* Menú oculto por defecto en móvil */ .navigation{display:none;position:absolute;top:48px;left:0;width:100%;background:rgba(8,6,0,0.98);border:1px solid #D4AF37;border-top:none;border-radius:0 0 12px 12px;padding:8px 6px;z-index:9999999;box-shadow:0 10px 25px rgba(0,0,0,0.7);flex-direction:column;gap:6px;}/* Cuando JS agrega .active se muestra */ .navigation.active{display:flex !important;}.navigation li{width:100%;list-style:none;}.navigation li a{display:block;width:100%;text-align:center;padding:13px 0;color:#D4AF37 !important;font-size:1.5em;font-family:'Dancing Script',cursive;font-weight:bold;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);border-radius:8px;white-space:nowrap;}.navigation li a:hover{background:linear-gradient(135deg,#D4AF37,#F0C040);color:#0a0a0a !important;}/* Mostrar hamburguesa */ .toggle{display:flex !important;align-items:center;justify-content:center;position:absolute;right:12px;top:0;bottom:0;width:40px;height:40px;margin:auto 0;cursor:pointer;background:linear-gradient(135deg,#D4AF37,#F0C040);border-radius:6px;}.toggle img{width:26px;height:26px;}.banner .content h1{font-size:4em;}.banner-logo-poster{width:270px;}.products h2{font-size:3.5em;}.products .content{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:70px 20px;padding:50px 25px 30px;}}/* ============================================= RESPONSIVE — TABLETS PEQUEÑAS (max 769px) ============================================= */ @media (max-width:769px){section{padding:30px 20px;}nav{width:95%;height:45px;overflow:visible;}.navigation{top:45px;}.banner .content h1{font-size:3em;}.banner .content h2{font-size:2.5em;}.banner .content p{font-size:1em;}.banner-logo-poster{width:230px;}.button{display:block;}.products h2{font-size:2.5em;}.products h4{font-size:1em;}.products a{font-size:1em;width:180px;}.products .content{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:65px 15px;padding:40px 15px 20px;}.products .content .card{height:200px;}.products .content .card:hover{height:430px;}.products .content .card .imgBx{height:260px;top:-55px;}.footer .sci li a img{max-width:35px;height:35px;}.footer .sci gap{gap:20px;}}/* ============================================= RESPONSIVE — MÓVILES (max 480px) ============================================= */ @media (max-width:480px){section{padding:20px 12px;}nav{width:96%;height:42px;padding:0 8px;overflow:visible;}.navigation{top:42px;}.logo_principal::before{width:36px;height:36px;}.banner .content h1{font-size:2.5em;}.banner .content h2{font-size:2em;}.banner-logo-poster{width:200px;}.products h2{font-size:2em;}.products h4{font-size:0.95em;padding:0 10px;}.products .content{grid-template-columns:repeat(2,1fr);gap:60px 10px;padding:35px 10px 20px;}.products .content .card{max-width:100%;height:180px;}.products .content .card:hover{height:400px;}.products .content .card .imgBx{height:220px;top:-50px;}.products .content .card .contentcard div span{width:16px !important;height:16px !important;}.products .content .card .contentcard div{gap:4px !important;}.products .content .card .button{padding:5px 10px 7px;font-size:0.85em;}.footer .sci li a img{max-width:30px;height:30px;}.footer .sci li a{margin:0 8px;}.copyrightText{font-size:13px;}}/* ============================================= RESPONSIVE — MÓVILES MUY PEQUEÑOS (max 360px) ============================================= */ @media (max-width:360px){.banner .content h1{font-size:2em;}.products h2{font-size:1.6em;}.products .content{grid-template-columns:repeat(2,1fr);gap:55px 8px;padding:30px 8px 15px;}.products .content .card{height:160px;}.products .content .card:hover{height:380px;}.products .content .card .imgBx{height:190px;top:-45px;}}
+/* ============================================= IMPORTACIONES ============================================= */ /* Fonts are preloaded in HTML - avoid duplicate imports */ /* ============================================= PALETA — CREACIONES ZABBA Negro:#0a0a0a | Dorado:#D4AF37 | Crema:#F5E6C8 ============================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+section {
+  position: relative;
+  padding: 40px;
+}
+a {
+  text-decoration: none;
+} /* ============================================= NAVEGACION ============================================= */
+nav {
+  padding: 0 20px;
+  width: 96%;
+  height: 55px;
+  box-sizing: border-box;
+  background: rgba(8, 6, 0, 0.93);
+  border: 1px solid #d4af37;
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.35);
+  transition: 0.5s;
+  border-radius: 9px;
+  z-index: 1000000;
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+}
+.header,
+.banner {
+  font-family: "Dancing Script", cursive;
+  width: 100%;
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  overflow: visible;
+} /* Logo navbar — solo muestra imagen */
+.logo_principal {
+  font-size: 0;
+  display: flex;
+  align-items: center;
+}
+.logo_principal::before {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 46px;
+  background-image: url("../../public/logoEmpresa.jpeg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+.header .logo,
+.logo_principal {
+  color: #d4af37;
+}
+.navigation {
+  display: flex;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+  align-items: center;
+  gap: 4px;
+}
+.navigation li {
+  list-style: none;
+}
+.navigation li a {
+  display: block;
+  padding: 6px 20px;
+  font-weight: bold;
+  font-size: 1.3em;
+  font-family: "Dancing Script", cursive;
+  transition: 0.5s;
+  color: #d4af37;
+  white-space: nowrap;
+}
+.navigation li a:hover {
+  background: linear-gradient(135deg, #d4af37, #f0c040);
+  color: #0a0a0a;
+  border-radius: 10px;
+}
+.toggle {
+  display: none;
+  position: absolute;
+  right: 40px;
+  background: linear-gradient(135deg, #d4af37, #f0c040);
+  border-radius: 5px;
+}
+.header .toggle img {
+  max-width: 35px;
+  cursor: pointer;
+} /* ============================================= BANNER / HERO ============================================= */
+.banner {
+  position: relative;
+  min-height: 110vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0a0a0a;
+}
+.banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.42);
+  z-index: 0;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  z-index: 1;
+  background: linear-gradient(to top, #0a0a0a, transparent);
+}
+.banner .content {
+  position: relative;
+  max-width: 900px;
+  text-align: center;
+  z-index: 2;
+  padding: 0 20px;
+}
+.banner .content a {
+  font-family: "Raleway", sans-serif;
+  display: block;
+} /* Poster del logo en el banner */
+.banner-logo-poster {
+  display: block;
+  width: 380px;
+  max-width: 88vw;
+  height: auto;
+  margin: 0 auto 22px;
+  border-radius: 18px;
+  border: 3px solid #d4af37;
+  box-shadow:
+    0 0 40px rgba(212, 175, 55, 0.65),
+    0 0 80px rgba(212, 175, 55, 0.25);
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+@keyframes logoGlow {
+  from {
+    box-shadow:
+      0 0 30px rgba(212, 175, 55, 0.5),
+      0 0 60px rgba(212, 175, 55, 0.2);
+  }
+  to {
+    box-shadow:
+      0 0 65px rgba(212, 175, 55, 0.95),
+      0 0 130px rgba(212, 175, 55, 0.4);
+  }
+} /* ============================================= COLOR SWATCHES — Reusable class for product colors ============================================= */
+.color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+} /* Nombre tienda en el banner */
+.banner .content h1 {
+  background: linear-gradient(135deg, #d4af37 0%, #f0c040 50%, #a0820d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 7em;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.7));
+  will-change: filter;
+  transition: filter 0.3s ease-out;
+}
+.banner .content h2 {
+  color: #f5e6c8;
+  font-size: 4em;
+}
+.banner .content p {
+  color: #f5e6c8;
+  font-size: 1.2em;
+}
+.fitBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} /* ============================================= BOTON GENERAL ============================================= */
+.button {
+  text-decoration: none;
+  color: #0a0a0a;
+  background: linear-gradient(135deg, #d4af37, #f0c040);
+  padding: 7px 1px 9px;
+  border: 1px solid #a0820d;
+  border-radius: 5px;
+  width: 250px;
+  margin: auto;
+  font-weight: bold;
+  transition:
+    transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+  will-change: transform, box-shadow;
+}
+.button:hover {
+  background: linear-gradient(135deg, #f0c040, #d4af37);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.65);
+  transform: translateY(-2px);
+} /* ============================================= SECCION PRODUCTOS ============================================= */
+.beauty {
+  font-family: "Dancing Script", cursive;
+}
+.products {
+  text-align: center;
+  margin: auto;
+  font-family: "Raleway", sans-serif;
+  background: linear-gradient(160deg, #111111 0%, #1a1208 50%, #0a0a0a 100%);
+}
+.products h2 {
+  font-size: 100px;
+  background: linear-gradient(135deg, #d4af37, #f0c040);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+}
+.products h4 {
+  font-size: 20px;
+  color: #f5e6c8;
+  margin-bottom: 10px;
+}
+.products a {
+  display: block;
+  margin: auto;
+  width: 250px;
+} /* ============================================= GRID DE CARDS ============================================= */
+.products .content {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 80px 30px;
+  padding: 60px 40px 40px;
+  justify-items: center;
+} /* ============================================= CARD ============================================= */
+.products .content .card {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 220px;
+  border: 2px solid #d4af37;
+  border-radius: 5px;
+  padding: 25px 7px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s ease-in-out;
+  background: rgba(20, 15, 3, 0.88);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.12);
+}
+.products .content .card:hover {
+  height: 480px;
+  border: 3px solid #f0c040;
+  background: linear-gradient(160deg, #1a1208, #0a0a0a);
+  border-radius: 5px;
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.45);
+}
+.products .content .card .imgBx {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  top: -60px;
+  margin: auto;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.products .content .card .imgBx img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.products .content .card .contentcard {
+  position: relative;
+  margin-top: -120px;
+  padding: 8px 15px;
+  text-align: center;
+  color: #f5e6c8;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+.products .content .card:hover .contentcard {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+.products .content .card .contentcard h3 {
+  font-size: 25px;
+  color: #d4af37;
+  background: rgba(10, 10, 10, 0.7);
+  border-radius: 7px;
+  font-family: "Dancing Script", cursive;
+  margin-bottom: 10px;
+}
+.products .content .card .contentcard p {
+  margin-bottom: 10px;
+  color: #f5e6c8;
+}
+.products .content .card .contentcard a {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+} /* Performance optimization:reduce reflow/repaint */
+.products .content .card {
+  content-visibility: auto;
+}
+.products .content .card .button {
+  text-decoration: none;
+  color: #0a0a0a;
+  background: linear-gradient(135deg, #d4af37, #f0c040);
+  padding: 7px 20px 9px;
+  border: 1px solid #a0820d;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  width: fit-content;
+}
+.products .content .card:hover .imgBx img {
+  max-width: 100%;
+  margin-top: -40px;
+}
+.products .content .card:hover a {
+  margin: auto;
+} /* Gradientes por card — tonos cálidos oscuros */
+.card-1 {
+  background: linear-gradient(45deg, #1a1000, #2a1f00);
+}
+.card-2 {
+  background: linear-gradient(45deg, #0d0d00, #1f1a00);
+}
+.card-3 {
+  background: linear-gradient(45deg, #1a0f00, #2a1800);
+}
+.card-4 {
+  background: linear-gradient(45deg, #120d00, #201800);
+}
+.card-5 {
+  background: linear-gradient(45deg, #0a0800, #1a1400);
+}
+.card-6 {
+  background: linear-gradient(45deg, #100e00, #201c00);
+}
+.card-7 {
+  background: linear-gradient(45deg, #1a1000, #2e2000);
+} /* ============================================= FOOTER ============================================= */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #060604;
+  border-top: 2px solid #d4af37;
+  font-family: "Raleway", sans-serif;
+  padding: 30px 20px;
+}
+.footer .sci {
+  position: relative;
+  display: flex;
+}
+.footer .sci li {
+  list-style: none;
+}
+.footer .sci li a {
+  text-decoration: none;
+  margin: 0 20px;
+}
+.footer .sci {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.footer .sci li {
+  list-style: none;
+}
+.footer .sci li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} /* Íconos Facebook e Instagram — forzar dorado */
+.footer .sci li a img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) saturate(100%) invert(78%) sepia(55%) saturate(500%) hue-rotate(5deg)
+    brightness(95%);
+  transition: 0.3s;
+}
+.footer .sci li a img:hover {
+  filter: brightness(0) saturate(100%) invert(85%) sepia(60%) saturate(600%) hue-rotate(5deg)
+    brightness(110%);
+  transform: scale(1.18);
+} /* Redes sociales deshabilitadas — dorado sin enlace */
+.social-disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.85;
+} /* TikTok SVG dorado */
+.tiktok-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tiktok-icon {
+  width: 40px;
+  height: 40px;
+  fill: #d4af37;
+  transition: 0.3s;
+}
+.tiktok-link:hover .tiktok-icon {
+  fill: #f0c040;
+  transform: scale(1.18);
+} /* WhatsApp flotante — visible en todos los dispositivos */
+.appWhatsapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 55px;
+  height: 55px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.appWhatsapp img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+.copyrightText {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  color: #f5e6c8;
+  text-align: center;
+}
+.copyrightText a {
+  text-decoration: none;
+  color: #d4af37;
+} /* ============================================= ============================================= */
+@media (max-width: 1200px) {
+  .products .content {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 70px 25px;
+    padding: 50px 30px 30px;
+  }
+  .banner .content h1 {
+    font-size: 5em;
+  }
+  .banner-logo-poster {
+    width: 300px;
+  }
+} /* ============================================= RESPONSIVE — TABLETS (max 1025px) ============================================= */
+@media (max-width: 1025px) {
+  nav {
+    padding: 0 10px;
+    width: 92%;
+    height: 48px;
+    overflow: visible;
+  } /* Menú oculto por defecto en móvil */
+  .navigation {
+    display: none;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    background: rgba(8, 6, 0, 0.98);
+    border: 1px solid #d4af37;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 8px 6px;
+    z-index: 9999999;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    gap: 6px;
+  } /* Cuando JS agrega .active se muestra */
+  .navigation.active {
+    display: flex !important;
+  }
+  .navigation li {
+    width: 100%;
+    list-style: none;
+  }
+  .navigation li a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 13px 0;
+    color: #d4af37 !important;
+    font-size: 1.5em;
+    font-family: "Dancing Script", cursive;
+    font-weight: bold;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .navigation li a:hover {
+    background: linear-gradient(135deg, #d4af37, #f0c040);
+    color: #0a0a0a !important;
+  } /* Mostrar hamburguesa */
+  .toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 12px;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    margin: auto 0;
+    cursor: pointer;
+    background: linear-gradient(135deg, #d4af37, #f0c040);
+    border-radius: 6px;
+  }
+  .toggle img {
+    width: 26px;
+    height: 26px;
+  }
+  .banner .content h1 {
+    font-size: 4em;
+  }
+  .banner-logo-poster {
+    width: 270px;
+  }
+  .products h2 {
+    font-size: 3.5em;
+  }
+  .products .content {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 70px 20px;
+    padding: 50px 25px 30px;
+  }
+} /* ============================================= RESPONSIVE — TABLETS PEQUEÑAS (max 769px) ============================================= */
+@media (max-width: 769px) {
+  section {
+    padding: 30px 20px;
+  }
+  nav {
+    width: 95%;
+    height: 45px;
+    overflow: visible;
+  }
+  .navigation {
+    top: 45px;
+  }
+  .banner .content h1 {
+    font-size: 3em;
+  }
+  .banner .content h2 {
+    font-size: 2.5em;
+  }
+  .banner .content p {
+    font-size: 1em;
+  }
+  .banner-logo-poster {
+    width: 230px;
+  }
+  .button {
+    display: block;
+  }
+  .products h2 {
+    font-size: 2.5em;
+  }
+  .products h4 {
+    font-size: 1em;
+  }
+  .products a {
+    font-size: 1em;
+    width: 180px;
+  }
+  .products .content {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 65px 15px;
+    padding: 40px 15px 20px;
+  }
+  .products .content .card {
+    height: 200px;
+  }
+  .products .content .card:hover {
+    height: 430px;
+  }
+  .products .content .card .imgBx {
+    height: 260px;
+    top: -55px;
+  }
+  .footer .sci li a img {
+    max-width: 35px;
+    height: 35px;
+  }
+  .footer .sci gap {
+    gap: 20px;
+  }
+} /* ============================================= RESPONSIVE — MÓVILES (max 480px) ============================================= */
+@media (max-width: 480px) {
+  section {
+    padding: 20px 12px;
+  }
+  nav {
+    width: 96%;
+    height: 42px;
+    padding: 0 8px;
+    overflow: visible;
+  }
+  .navigation {
+    top: 42px;
+  }
+  .logo_principal::before {
+    width: 36px;
+    height: 36px;
+  }
+  .banner .content h1 {
+    font-size: 2.5em;
+  }
+  .banner .content h2 {
+    font-size: 2em;
+  }
+  .banner-logo-poster {
+    width: 200px;
+  }
+  .products h2 {
+    font-size: 2em;
+  }
+  .products h4 {
+    font-size: 0.95em;
+    padding: 0 10px;
+  }
+  .products .content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 10px;
+    padding: 35px 10px 20px;
+  }
+  .products .content .card {
+    max-width: 100%;
+    height: 180px;
+  }
+  .products .content .card:hover {
+    height: 400px;
+  }
+  .products .content .card .imgBx {
+    height: 220px;
+    top: -50px;
+  }
+  .products .content .card .contentcard div span {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .products .content .card .contentcard div {
+    gap: 4px !important;
+  }
+  .products .content .card .button {
+    padding: 5px 10px 7px;
+    font-size: 0.85em;
+  }
+  .footer .sci li a img {
+    max-width: 30px;
+    height: 30px;
+  }
+  .footer .sci li a {
+    margin: 0 8px;
+  }
+  .copyrightText {
+    font-size: 13px;
+  }
+} /* ============================================= RESPONSIVE — MÓVILES MUY PEQUEÑOS (max 360px) ============================================= */
+@media (max-width: 360px) {
+  .banner .content h1 {
+    font-size: 2em;
+  }
+  .products h2 {
+    font-size: 1.6em;
+  }
+  .products .content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 55px 8px;
+    padding: 30px 8px 15px;
+  }
+  .products .content .card {
+    height: 160px;
+  }
+  .products .content .card:hover {
+    height: 380px;
+  }
+  .products .content .card .imgBx {
+    height: 190px;
+    top: -45px;
+  }
+}
